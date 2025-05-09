@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}Product List{% endblock %}
+
+{% block content %}
+<h1>Product List</h1>
+
+<a class="btn btn-primary" href="{% url 'product_create' %}">Add Product</a>
+
+<div class="container row gap-3">
+    {% for product in products %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ product.photo.url }}" class="card-img-top" alt="Product Image">
+
+        <div class="card-body">
+            <h5 class="card-title">{{ product.user.username }}</h5>
+            <p class="card-text">{{ product.text }}</p>
+            <p class="card-text">{{ product.price }}</p>
+            {% if product.user == request.user %}
+            <a href="{% url 'product_update' product.id %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'product_delete' product.id %}" class="btn btn-danger">Delete</a>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

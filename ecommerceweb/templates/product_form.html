@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Product Form{% endblock %}
+
+{% block content %}
+<h1 class="text-center mt-4">Welcome to the store</h1>
+<h2 class = ' '></h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-warning">Save</button>
+
+    <a href="{% url 'product_list' %}" class="btn btn-secondary">Back to List</a>
+</form>
+{% endblock %}
